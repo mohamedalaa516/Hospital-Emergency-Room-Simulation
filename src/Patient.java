@@ -1,21 +1,20 @@
-public class Patient implements Runnable{
+public class Patient extends Thread{
     private final int patientId;
     private final WaitingRoom waitingRoom;
-    private final Semaphore treatmentCompleted;
 
-    public Patient(int patientId, WaitingRoom waitingRoom, Semaphore treatmentCompleted) {
-
+    public Patient(int patientId, WaitingRoom waitingRoom) {
+        this.patientId=patientId;
+        this.waitingRoom=waitingRoom;
     }
 
     @Override
     public void run() {
-
-    }
-
-    public void notifyTreatmentFinished() {
+        System.out.println(patientId+ " arrived.");
+        waitingRoom.enterWaitingRoom(this);
 
     }
 
     public int getPatientId() {
+        return patientId;
     }
 }
