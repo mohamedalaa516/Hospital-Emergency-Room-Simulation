@@ -1,20 +1,14 @@
 public class TreatmentRooms {
-    private static final int TOTAL_ROOMS = 2;
-    //private final Semaphore roomsSemaphore;
+    private Semaphore semaphore =new Semaphore(2);
 
-    public TreatmentRooms(Semaphore roomsSemaphore) {
+    public TreatmentRooms() {
     }
-    public boolean tryAcquireRoom(long timeoutMillis){
-        return true;
-    }
-
-    public void releaseRoom() {
-    }
-
-    public boolean requireRoom(int doctorId) {
-        return true;
+    public boolean requireRoom(int doctorId,long timeoutMillis){
+        System.out.println(doctorId + " is trying to acquire a treatment room.");
+        return semaphore.tryAcquire(timeoutMillis);
     }
 
     public void letRoom() {
+        semaphore.V();
     }
 }

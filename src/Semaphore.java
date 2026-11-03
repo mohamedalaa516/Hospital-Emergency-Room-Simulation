@@ -21,7 +21,7 @@ public class Semaphore
     }
 
     public synchronized boolean tryAcquire(long timeoutMillis)
-            throws InterruptedException 
+
     {
 
         if (timeoutMillis < 0) 
@@ -48,7 +48,11 @@ public class Semaphore
         {
             long millis = remainingTime / 1_000_000L;
             int nanos = (int) (remainingTime % 1_000_000L);
-            wait(millis, nanos);
+            try {
+                wait(millis, nanos);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             long elapsedTime = System.nanoTime() - startTime;
             remainingTime = timeoutNanos - elapsedTime;
         }
