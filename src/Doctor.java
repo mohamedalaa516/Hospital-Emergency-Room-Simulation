@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Doctor extends Thread {
+public class Doctor implements Runnable {
 
     private final int doctorId;
     private final WaitingRoom waitingRoom;
@@ -27,6 +27,11 @@ public class Doctor extends Thread {
                 System.out.println(doctorId + " is now available.");
                 System.out.println(patient.getPatientId() + " left.");
                 Hospital.CountTreated();
+            } else{
+                System.out.println(doctorId + " could not acquire a treatment room.");
+                System.out.println(doctorId + " is sending "+ patient.getPatientId()+" back to the waiting room.");
+                waitingRoom.enterWaitingRoom(patient);
+                System.out.println(doctorId + " is now available.");
             }
         }
 
