@@ -17,7 +17,7 @@ public class Doctor implements Runnable {
         while(Hospital.hasPatients()){
             Patient patient = waitingRoom.fetchNextPatient();
             System.out.println(doctorId + " is assigned to "+ patient.getPatientId() + ".");
-            if(treatmentRooms.requireRoom(doctorId)){
+            if(treatmentRooms.requireRoom(doctorId,3000)){
                 System.out.println(doctorId + " acquired a treatment room.");
                 System.out.println(doctorId + " begins treating " + patient.getPatientId() + ".");
                 treatPatient();

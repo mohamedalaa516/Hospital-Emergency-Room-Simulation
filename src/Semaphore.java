@@ -1,75 +1,51 @@
-public class Semaphore 
-{
+public class Semaphore {
+
     private int value;
-
-    public Semaphore(int initialValue) 
-    {
-        if (initialValue < 0) 
-        {
-            throw new IllegalArgumentException("Initial value cannot be negative.");
-        }
-        this.value = initialValue;
+    Semaphore(int value){
+        this.value=value;
     }
 
-    public synchronized void P() throws InterruptedException
-    {
-        while (value == 0)
-        {
-            wait();
-        }
+    public synchronized void P(){
         value--;
+        if(value<0){
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
-    public synchronized boolean tryAcquire(long timeoutMillis)
-            throws InterruptedException 
-    {
+    public synchronized boolean tryAcquire(long waitingTime){
+       if(value>0){
+          value--;
+          return true;
+       }
+       long endTime=System.currentTimeMillis()+waitingTime;
+       while(waitingTime>0){
+           try {
+               wait(waitingTime);
+           } catch (InterruptedException e) {
+               throw new RuntimeException(e);
+           }
+          waitingTime=endTime-System.currentTimeMillis();
+           if(value>0){
+               value--;
+               return true;
+           }
+           if(waitingTime<=0)return false;
 
-        if (timeoutMillis < 0) 
-        {
-            throw new IllegalArgumentException("Timeout cannot be negative.");
-        }
 
-        if (value > 0) 
-        {
-            value--;
-            return true;
-        }
-
-        if (timeoutMillis == 0) 
-        {
-            return false;
-        }
-
-        long startTime = System.nanoTime();
-        long timeoutNanos = timeoutMillis * 1_000_000L;
-        long remainingTime = timeoutNanos;
-
-        while (value == 0 && remainingTime > 0) 
-        {
-            long millis = remainingTime / 1_000_000L;
-            int nanos = (int) (remainingTime % 1_000_000L);
-            wait(millis, nanos);
-            long elapsedTime = System.nanoTime() - startTime;
-            remainingTime = timeoutNanos - elapsedTime;
-        }
-
-        if (value > 0)
-        {
-            value--;
-            return true;
-        }
-
-        return false;
+       }
+       return false;
     }
 
-    public synchronized int getValue()
-    {
-        return value;
-    }
 
-    public synchronized void V() 
-    {
+
+    public synchronized  void V(){
         value++;
-        notifyAll();
+        notify();
+
     }
+
 }

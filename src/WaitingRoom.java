@@ -21,44 +21,17 @@ public class WaitingRoom {
     }
 
     public void enterWaitingRoom(Patient patient) {
-
-        boolean isAcquired;
-        try {
-            isAcquired = spaces.tryAcquire(3000);
-        }
-        catch (InterruptedException e){
-            return;
-        }
-
-        if (isAcquired){
-
-            try{
-                mutex.P();
-            }
-            catch (InterruptedException e){
-                System.out.println("interruption occured");
-                return;
-            }
-
-            System.out.println("P" + patient.getPatientId() + " entered waiting room");
-            queue.add(patient);
-            mutex.V();
-            elements.V();
-        }   
-        else
-            System.out.println("the waiting room is full\nP" + patient.getPatientId() + " is waiting outside");
-        
-        
+        spaces.P();
+        mutex.P();
+        System.out.println("P" + patient.getPatientId() + " entered waiting room");
+        queue.add(patient);
+        mutex.V();
+        elements.V(); 
     }
 
     public Patient fetchNextPatient() {
-        try{
-            elements.P();
-            mutex.P();
-        }
-        catch (InterruptedException e){
-            System.out.println("Interruption occured!");
-        }
+        elements.P();
+        mutex.P();
         Patient p = queue.remove();
         mutex.V();
         spaces.V();
