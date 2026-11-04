@@ -21,12 +21,16 @@ public class WaitingRoom {
     }
 
     public void enterWaitingRoom(Patient patient) {
-        spaces.P();
+        if (!spaces.tryAcquire(0)){
+            System.out.println("waiting room is full\nP" + patient.getPatientId() + " is waiting");
+            spaces.P();
+        }
         mutex.P();
         System.out.println("P" + patient.getPatientId() + " entered waiting room");
         queue.add(patient);
         mutex.V();
         elements.V(); 
+
     }
 
     public Patient fetchNextPatient() {
