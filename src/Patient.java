@@ -11,7 +11,6 @@ public class Patient implements Runnable{
     public void run() {
         System.out.println(patientId+ " arrived.");
         waitingRoom.enterWaitingRoom(this);
-
     }
 
     public int getPatientId() {
