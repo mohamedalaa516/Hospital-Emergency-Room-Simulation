@@ -1,10 +1,12 @@
+import java.util.concurrent.CountDownLatch;
+
 public class Hospital {
-  private int treatedPatients;
   private int waitingRoomCapacity;
   private int doctorNumber;
   private int patientNumber;
   private WaitingRoom waitingRoom;
   private TreatmentRooms treatmentRooms;
+  private CountDownLatch allPatientsTreated;
 
   public void setRoomCapacity(int waitingRoomCapacity) {
     this.waitingRoomCapacity = waitingRoomCapacity;
@@ -27,11 +29,11 @@ public class Hospital {
   }
 
   public synchronized void countTreated() {
-    treatedPatients++;
+    allPatientsTreated.countDown();
   }
 
-  public synchronized boolean hasPatients() {
-    return treatedPatients < patientNumber;
+  public void waitForAllPatients() throws InterruptedException {
+    allPatientsTreated.await();
   }
 
   public static void main(String[] args) throws InterruptedException {
@@ -86,23 +88,18 @@ public class Hospital {
       System.out.println("Missing required arguments.");
       return;
     }
-
-    // Create shared resources
+    hospital.allPatientsTreated = new CountDownLatch(hospital.patientNumber);
     hospital.waitingRoom = new WaitingRoom(hospital.waitingRoomCapacity);
 
     hospital.treatmentRooms = new TreatmentRooms();
-
     Thread[] patientThreads = new Thread[hospital.patientNumber];
     Thread[] doctorThreads = new Thread[hospital.doctorNumber];
-
-    // Create patients
     for (int i = 0; i < patientThreads.length; i++) {
-      Patient patient = new Patient(i + 1, hospital.waitingRoom);
+      Patient patient = new Patient(i + 1, hospital);
       patientThreads[i] = new Thread(patient);
       patientThreads[i].start();
     }
 
-    // Create doctors
     for (int i = 0; i < doctorThreads.length; i++) {
       Doctor doctor = new Doctor(i + 1, hospital);
       doctorThreads[i] = new Thread(doctor);
@@ -112,11 +109,11 @@ public class Hospital {
     for (Thread patient : patientThreads) {
       patient.join();
     }
-
+    hospital.waitForAllPatients();
+    hospital.getWaitingRoom().shutdown(hospital.doctorNumber);
     for (Thread doctor : doctorThreads) {
       doctor.join();
     }
-
     System.out.println("All patients have been treated.");
     System.out.println("Simulation completed.");
   }

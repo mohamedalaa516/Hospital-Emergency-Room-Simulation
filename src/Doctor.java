@@ -12,8 +12,11 @@ public class Doctor implements Runnable {
 
   @Override
   public void run() {
-    while (hospital.hasPatients()) {
+    while (true) {
       Patient patient = hospital.getWaitingRoom().fetchNextPatient();
+      if (patient.isShutdownSignal()) {
+        break;
+      }
       System.out.println(
           "Doctor " + doctorId + " is assigned to " + "P" + patient.getPatientId() + ".");
       if (hospital.getTreatmentRooms().requireRoom(doctorId, 3000)) {
