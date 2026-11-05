@@ -1,35 +1,20 @@
-public class Patient implements Runnable {
-  private final int patientId;
-  private final Hospital hospital;
-  private final boolean shutDownSignal;
+public class Patient implements Runnable{
+    private final int patientId;
+    private final WaitingRoom waitingRoom;
 
-  public Patient(int patientId, Hospital hospital) {
-    this.patientId = patientId;
-    this.hospital = hospital;
-    this.shutDownSignal = false;
-  }
+    public Patient(int patientId, WaitingRoom waitingRoom) {
+        this.patientId=patientId;
+        this.waitingRoom=waitingRoom;
+    }
 
-  private Patient() {
-    this.patientId = -1;
-    this.hospital = null;
-    this.shutDownSignal = true;
-  }
+    @Override
+    public void run() {
+        System.out.println(patientId+ " arrived.");
+        waitingRoom.enterWaitingRoom(this);
 
-  public static Patient createShutdownSignal() {
-    return new Patient();
-  }
+    }
 
-  public boolean isShutdownSignal() {
-    return shutDownSignal;
-  }
-
-  @Override
-  public void run() {
-    System.out.println("P" + patientId + " arrived.");
-    hospital.getWaitingRoom().enterWaitingRoom(this);
-  }
-
-  public int getPatientId() {
-    return patientId;
-  }
+    public int getPatientId() {
+        return patientId;
+    }
 }
