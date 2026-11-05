@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e7f4fcae-d794-4465-9749-ce2cc89363ed" name="Changes" comment="Fix Hospital Logic" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="fix-hospital-logic" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ramyzaherr&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mohamedalaa516/Hospital-Emergency-Room-Simulation.git&quot;,
+    &quot;accountId&quot;: &quot;3035d7de-017e-479d-84e9-8b0f74072ef5&quot;
+  }
+}</component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.000242454279925" />
+      <entry key="MS500" value="1.1981514651211653" />
+      <entry key="S2" value="1.9793114317591998" />
+      <entry key="S5" value="2.827807392652334" />
+      <entry key="S10" value="3.9905196369144815" />
+      <entry key="S30" value="6.043345408789847" />
+      <entry key="S60" value="6.909906683161447" />
+      <entry key="M2" value="7.4843009988644456" />
+      <entry key="M5" value="9.970729106587662" />
+      <entry key="M10" value="17.02971515863877" />
+      <entry key="M15" value="23.175524584868523" />
+      <entry key="M30" value="33.903640841953006" />
+      <entry key="H1" value="42.064402741414604" />
+      <entry key="H2" value="47.12981869741607" />
+      <entry key="H4" value="49.95635607734218" />
+      <entry key="D1" value="52.476920094931295" />
+      <entry key="W1" value="52.92487732323755" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="1.1813610595099848E-105" />
+      <entry key="S5" value="1.0689393397933146E-42" />
+      <entry key="S10" value="1.033897625031714E-21" />
+      <entry key="S30" value="1.0327287973464058E-7" />
+      <entry key="S60" value="3.9200148341631506E-4" />
+      <entry key="M2" value="0.036827547048124167" />
+      <entry key="M5" value="1.3012930921950498" />
+      <entry key="M10" value="5.87329616782767" />
+      <entry key="M15" value="10.064911291953164" />
+      <entry key="M30" value="17.531234684696575" />
+      <entry key="H1" value="23.270218762461397" />
+      <entry key="H2" value="26.846531329863037" />
+      <entry key="H4" value="28.845439925265193" />
+      <entry key="D1" value="30.629577686697363" />
+      <entry key="W1" value="30.946798034190408" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9014879272542168" />
+      <entry key="MS500" value="1.176761748716135" />
+      <entry key="S2" value="1.9732075310170887" />
+      <entry key="S5" value="2.824910122805619" />
+      <entry key="S10" value="3.9886109729475128" />
+      <entry key="S30" value="6.042403391617133" />
+      <entry key="S60" value="6.909749349347588" />
+      <entry key="M2" value="7.519980243004146" />
+      <entry key="M5" value="11.260688029270616" />
+      <entry key="M10" value="22.88128638792587" />
+      <entry key="M15" value="33.21697640987494" />
+      <entry key="M30" value="51.41551718505267" />
+      <entry key="H1" value="65.32209673847476" />
+      <entry key="H2" value="73.96921323591603" />
+      <entry key="H4" value="78.79798485905586" />
+      <entry key="D1" value="83.10582662315014" />
+      <entry key="W1" value="83.87157856594362" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3LNYggvwX0R5JLcCe2Iv347YwjH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Hospital.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "fix-hospital-logic",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/ramyzaherr/IdeaProjects/Hospital-Emergency-Room-Simulation",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2df11533d9fe-intellij.indexing.shared.core-IU-262.11879.100" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.11879.100" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e7f4fcae-d794-4465-9749-ce2cc89363ed" name="Changes" comment="" />
+      <created>1793296105299</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1793296105299</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="System skeleton" />
+    <MESSAGE value="TreatmentRoom implementation" />
+    <MESSAGE value="Fix Hospital Logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Hospital Logic" />
+  </component>
+</project>
