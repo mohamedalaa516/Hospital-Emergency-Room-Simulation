@@ -16,22 +16,25 @@ public class Doctor implements Runnable {
     public void run() {
         while(Hospital.hasPatients()){
             Patient patient = waitingRoom.fetchNextPatient();
-            System.out.println(doctorId + " is assigned to "+ patient.getPatientId() + ".");
+            if(patient==null){
+                break;
+            }
+            System.out.println("Doctor"+doctorId + " is assigned to "+"P"+ patient.getPatientId() + ".");
             if(treatmentRooms.requireRoom(doctorId,3000)){
-                System.out.println(doctorId + " acquired a treatment room.");
-                System.out.println(doctorId + " begins treating " + patient.getPatientId() + ".");
+                System.out.println("Doctor"+doctorId + " acquired a treatment room.");
+                System.out.println("Doctor"+doctorId + " begins treating " + "P" + patient.getPatientId() + ".");
                 treatPatient();
-                System.out.println(doctorId + " finished treating "+patient.getPatientId() + ".");
+                System.out.println("Doctor"+doctorId + " finished treating "+"P"+patient.getPatientId() + ".");
                 treatmentRooms.letRoom();
-                System.out.println(doctorId + " released the treatment room.");
-                System.out.println(doctorId + " is now available.");
-                System.out.println(patient.getPatientId() + " left.");
+                System.out.println("Doctor"+doctorId + " released the treatment room.");
+                System.out.println("Doctor"+doctorId + " is now available.");
+                System.out.println("P"+patient.getPatientId() + " left.");
                 Hospital.CountTreated();
             } else{
-                System.out.println(doctorId + " could not acquire a treatment room.");
-                System.out.println(doctorId + " is sending "+ patient.getPatientId()+" back to the waiting room.");
+                System.out.println("Doctor"+doctorId + " could not acquire a treatment room.");
+                System.out.println("Doctor"+doctorId + " is sending "+"P"+ patient.getPatientId()+" back to the waiting room.");
                 waitingRoom.enterWaitingRoom(patient);
-                System.out.println(doctorId + " is now available.");
+                System.out.println("Doctor"+doctorId + " is now available.");
             }
         }
 
@@ -40,7 +43,7 @@ public class Doctor implements Runnable {
     private void treatPatient() {
        Random random= new Random();
        try{
-           Thread.sleep(random.nextInt(5)*1000);
+           Thread.sleep((random.nextInt(5)+1)*1000);
        } catch (InterruptedException e) {
            throw new RuntimeException(e);
        }

@@ -21,13 +21,16 @@ public class WaitingRoom {
     }
 
     public void enterWaitingRoom(Patient patient) {
-        if (!spaces.tryAcquire(0)){
-            System.out.println("waiting room is full\nP" + patient.getPatientId() + " is waiting");
-            spaces.P();
-        }
         mutex.P();
-        System.out.println("P" + patient.getPatientId() + " entered waiting room");
+        if(queue.size()>= capacity){
+            System.out.println("The waiting room is full.");
+            System.out.println("P"+patient.getPatientId()+" is waiting outside for an available seat.");
+        }
+        mutex.V();
+        spaces.P();
+        mutex.P();
         queue.add(patient);
+        System.out.println("P" + patient.getPatientId() + " entered waiting room");
         mutex.V();
         elements.V(); 
 
@@ -36,13 +39,18 @@ public class WaitingRoom {
     public Patient fetchNextPatient() {
         elements.P();
         mutex.P();
-        Patient p = queue.remove();
+        Patient p = queue.poll();
         mutex.V();
-        spaces.V();
+        if(p!=null){
+            spaces.V();
+        }
+
 
         return p;
     }
-    public void returnPatient(Patient patient) throws InterruptedException {
-        return; // to be continued
+    public void StopRemainingDoctors(int doctorcount){
+        for(int i=0;i<doctorcount;i++){
+            elements.V();
+        }
     }
 }

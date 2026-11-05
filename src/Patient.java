@@ -9,7 +9,7 @@ public class Patient implements Runnable{
 
     @Override
     public void run() {
-        System.out.println(patientId+ " arrived.");
+        System.out.println("P"+patientId+ " arrived.");
         waitingRoom.enterWaitingRoom(this);
 
     }

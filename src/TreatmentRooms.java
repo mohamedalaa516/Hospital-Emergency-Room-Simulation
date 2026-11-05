@@ -4,7 +4,7 @@ public class TreatmentRooms {
     public TreatmentRooms() {
     }
     public boolean requireRoom(int doctorId,long timeoutMillis){
-        System.out.println(doctorId + " is trying to acquire a treatment room.");
+        System.out.println("Doctor"+doctorId + " is trying to acquire a treatment room.");
         return semaphore.tryAcquire(timeoutMillis);
     }
 
