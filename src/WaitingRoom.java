@@ -36,12 +36,13 @@ public class WaitingRoom {
 
     }
 
-    public Patient fetchNextPatient() {
+    public Patient fetchNextPatient(int doctorId) {
         elements.P();
         mutex.P();
         Patient p = queue.poll();
         mutex.V();
         if(p!=null){
+            System.out.println("Doctor"+doctorId + " is assigned to "+"P"+ p.getPatientId() + ".");
             spaces.V();
         }
 

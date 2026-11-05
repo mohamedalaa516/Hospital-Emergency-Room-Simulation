@@ -42,15 +42,22 @@ public class Hospital {
         }
         System.out.println();
 
-        for (int i = 0; i < NumOfPatients; i++) {
-            patientThreads[i].start();
-        }
-
         Thread[] doctorThreads = new Thread[NoOfDoctor];
         for (int i = 0; i < NoOfDoctor; i++) {
             doctorThreads[i] = new Thread(new Doctor(i + 1, waitingRoom, treatmentRooms));
             doctorThreads[i].start();
         }
+
+        for (int i = 0; i < NumOfPatients; i++) {
+            patientThreads[i].start();
+            try{
+                Thread.sleep(85);
+            }catch (InterruptedException e){
+                throw new RuntimeException(e);
+            }
+        }
+
+
 
         while (Hospital.hasPatients()) {
             try {
