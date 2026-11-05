@@ -49,7 +49,5 @@ public class Doctor implements Runnable {
        }
     }
 
-    public int getDoctorId() {
-        return doctorId;
-    }
+
 }
