@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
+// *
+
 public class WaitingRoom {
   private final int capacity;
   private final Queue<Patient> queue = new LinkedList<>();
