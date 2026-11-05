@@ -1,23 +1,31 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
+// *
+
 public class WaitingRoom {
-    private final int capacity;
-    private final Queue<Patient> queue = new LinkedList<>();
+  private final int capacity;
+  private final Queue<Patient> queue = new LinkedList<>();
 
-    Semaphore spaces;
-    Semaphore elements;
-    Semaphore mutex;
+  Semaphore spaces;
+  Semaphore elements;
+  Semaphore mutex;
 
-    public WaitingRoom(int capacity) {
-        this.capacity = capacity;
-        spaces = new Semaphore(capacity);
-        elements = new Semaphore(0);
-        mutex = new Semaphore(1);
-    }
+  public WaitingRoom(int capacity) {
+    this.capacity = capacity;
+    spaces = new Semaphore(capacity);
+    elements = new Semaphore(0);
+    mutex = new Semaphore(1);
+  }
 
-    public boolean isFull() {
-        return queue.size() == capacity;
+  public boolean isFull() {
+    return queue.size() == capacity;
+  }
+
+  public void enterWaitingRoom(Patient patient) {
+    if (!spaces.tryAcquire(0)) {
+      System.out.println("waiting room is full\nP" + patient.getPatientId() + " is waiting");
+      spaces.P();
     }
 
     public void enterWaitingRoom(Patient patient) {
@@ -35,6 +43,7 @@ public class WaitingRoom {
         elements.V(); 
 
     }
+  }
 
     public Patient fetchNextPatient() {
         elements.P();
