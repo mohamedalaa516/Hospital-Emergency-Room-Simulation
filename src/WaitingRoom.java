@@ -27,33 +27,39 @@ public class WaitingRoom {
       System.out.println("waiting room is full\nP" + patient.getPatientId() + " is waiting");
       spaces.P();
     }
-    mutex.P();
-    System.out.println("P" + patient.getPatientId() + " entered waiting room");
-    queue.add(patient);
-    mutex.V();
-    elements.V();
-  }
 
-  public Patient fetchNextPatient() {
-    elements.P();
-    mutex.P();
-    Patient p = queue.remove();
-    mutex.V();
-    spaces.V();
-    return p;
-  }
+    public void enterWaitingRoom(Patient patient) {
+        mutex.P();
+        if(queue.size()>= capacity){
+            System.out.println("The waiting room is full.");
+            System.out.println("P"+patient.getPatientId()+" is waiting outside for an available seat.");
+        }
+        mutex.V();
+        spaces.P();
+        mutex.P();
+        queue.add(patient);
+        System.out.println("P" + patient.getPatientId() + " entered waiting room");
+        mutex.V();
+        elements.V(); 
 
-  public void shutdown(int doctorCount) {
-    for (int i = 0; i < doctorCount; i++) {
-      spaces.P();
-      mutex.P();
-      queue.add(Patient.createShutdownSignal());
-      mutex.V();
-      elements.V();
     }
   }
 
-  public void returnPatient(Patient patient) throws InterruptedException {
-    return; // to be continued
-  }
+    public Patient fetchNextPatient() {
+        elements.P();
+        mutex.P();
+        Patient p = queue.poll();
+        mutex.V();
+        if(p!=null){
+            spaces.V();
+        }
+
+
+        return p;
+    }
+    public void StopRemainingDoctors(int doctorcount){
+        for(int i=0;i<doctorcount;i++){
+            elements.V();
+        }
+    }
 }

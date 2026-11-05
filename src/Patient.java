@@ -9,11 +9,10 @@ public class Patient implements Runnable {
     this.shutDownSignal = false;
   }
 
-  private Patient() {
-    this.patientId = -1;
-    this.hospital = null;
-    this.shutDownSignal = true;
-  }
+    @Override
+    public void run() {
+        System.out.println("P"+patientId+ " arrived.");
+        waitingRoom.enterWaitingRoom(this);
 
   public static Patient createShutdownSignal() {
     return new Patient();
