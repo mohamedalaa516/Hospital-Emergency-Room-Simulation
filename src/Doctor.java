@@ -24,8 +24,8 @@ public class Doctor implements Runnable {
                 System.out.println("Doctor"+doctorId + " begins treating " + "P" + patient.getPatientId() + ".");
                 treatPatient();
                 System.out.println("Doctor"+doctorId + " finished treating "+"P"+patient.getPatientId() + ".");
-                treatmentRooms.letRoom();
                 System.out.println("Doctor"+doctorId + " released the treatment room.");
+                treatmentRooms.letRoom();
                 System.out.println("Doctor"+doctorId + " is now available.");
                 System.out.println("P"+patient.getPatientId() + " left.");
                 Hospital.CountTreated();
